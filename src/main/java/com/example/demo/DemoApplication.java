@@ -17,24 +17,43 @@ import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication
-public class DemoApplication implements CommandLineRunner {
-
+public class DemoApplication  implements  CommandLineRunner {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private  AuthorService authorService;
+
+    @Autowired
+    private  BookService bookService;
+
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-
     @Override
     public void run(String... args) throws Exception {
-      List<CustomerDto> customerDtos = customerService.getCustomerWithBook();
-        for(CustomerDto customerDto:  customerDtos){
-            System.out.println(customerDto);
+     Set<CustomerDto> customerDtos = customerService.getAllCustomer();
+        for (CustomerDto customer: customerDtos ) {
+            System.out.println(customer);
         }
 
+        System.out.println("-------------------------------------------------------------------------------------");
+
+
+        List<AuthorDto> authorDtos = authorService.getAllAuthorWithBooks();
+        for (AuthorDto author : authorDtos) {
+            System.out.println(author);
+        }
+
+        System.out.println("-------------------------------------------------------------------------------------");
+
+        List<BookDto> bookDtos = bookService.getAllBookWithJoin();
+        for(BookDto  book : bookDtos){
+            System.out.println(book);
+        }
 
     }
 }

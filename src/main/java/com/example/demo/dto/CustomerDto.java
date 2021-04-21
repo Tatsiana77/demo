@@ -2,8 +2,10 @@ package com.example.demo.dto;
 
 import com.example.demo.entity.Book;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
 
 public class CustomerDto {
 
@@ -90,7 +92,10 @@ public class CustomerDto {
         if (this == o) return true;
         if (!(o instanceof CustomerDto)) return false;
         CustomerDto that = (CustomerDto) o;
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getName(), that.getName()) && Objects.equals(getSurname(), that.getSurname()) && Objects.equals(getCustomer_address(), that.getCustomer_address()) && Objects.equals(getCustomer_phone(), that.getCustomer_phone()) && Objects.equals(getCustomer_email(), that.getCustomer_email()) && Objects.equals(getBookDto(), that.getBookDto());
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getSurname(), that.getSurname()) && Objects.equals(getCustomer_address(), that.getCustomer_address())
+                && Objects.equals(getCustomer_phone(), that.getCustomer_phone()) && Objects.equals(getCustomer_email(), that.getCustomer_email())
+                && Objects.equals(getBookDto(), that.getBookDto());
     }
 
     @Override

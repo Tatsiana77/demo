@@ -1,13 +1,15 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 
 @Entity
-public class Book {
+public class Book  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +25,8 @@ public class Book {
 
     @ManyToMany(mappedBy = "book")
     private Set<Customer> customers = new HashSet<>();
+
+
 
     public Integer getId() {
         return id;
@@ -61,7 +65,8 @@ public class Book {
         if (this == o) return true;
         if (!(o instanceof Book)) return false;
         Book book = (Book) o;
-        return Objects.equals(getId(), book.getId()) && Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getCustomers(), book.getCustomers());
+        return Objects.equals(getId(), book.getId()) && Objects.equals(getTitle(), book.getTitle())
+                && Objects.equals(getCustomers(), book.getCustomers());
     }
 
     @Override

@@ -8,4 +8,11 @@ import java.util.List;
 public interface BookService {
 
     public List<BookDto> getAllBook();
+
+    public List<BookDto> getAllBookWithJoin();
+
+    public void saveBook(BookDto bookDto);
+
+    public void deleteBookById(Integer id);
+
 }

@@ -2,8 +2,10 @@ package com.example.demo.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
 
 @Entity
 public class Customer {
@@ -28,11 +30,11 @@ public class Customer {
     private String customer_email;
 
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "customer_book",
             joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
-           private Set<Book> book = new HashSet<>();
+           private Set<Book> book  = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -95,7 +97,10 @@ public class Customer {
         if (this == o) return true;
         if (!(o instanceof Customer)) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(getId(), customer.getId()) && Objects.equals(getName(), customer.getName()) && Objects.equals(getSurname(), customer.getSurname()) && Objects.equals(getCustomer_address(), customer.getCustomer_address()) && Objects.equals(getCustomer_phone(), customer.getCustomer_phone()) && Objects.equals(getCustomer_email(), customer.getCustomer_email()) && Objects.equals(getBook(), customer.getBook());
+        return Objects.equals(getId(), customer.getId()) && Objects.equals(getName(), customer.getName())
+                && Objects.equals(getSurname(), customer.getSurname()) && Objects.equals(getCustomer_address(), customer.getCustomer_address())
+                && Objects.equals(getCustomer_phone(), customer.getCustomer_phone()) && Objects.equals(getCustomer_email(), customer.getCustomer_email())
+                && Objects.equals(getBook(), customer.getBook());
     }
 
     @Override

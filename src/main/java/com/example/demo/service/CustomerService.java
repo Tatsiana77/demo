@@ -12,9 +12,9 @@ public interface CustomerService {
 
     public CustomerDto getCustomerWithById(Integer idCustomer);
 
-    public Set<CustomerDto> getCustomerWithBook();
+    public List<CustomerDto> getCustomerWithBook();
 
-    public Set<CustomerDto> getAllCustomer();
+    public List<CustomerDto> getAllCustomer();
 
     public void saveEntity(CustomerDto customerDto);
 

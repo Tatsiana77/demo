@@ -35,7 +35,7 @@ public class DemoApplication  implements  CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-     Set<CustomerDto> customerDtos = customerService.getAllCustomer();
+    List<CustomerDto> customerDtos = customerService.getCustomerWithBook();
         for (CustomerDto customer: customerDtos ) {
             System.out.println(customer);
         }

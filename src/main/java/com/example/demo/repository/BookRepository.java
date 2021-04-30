@@ -21,6 +21,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("SELECT DISTINCT b FROM Book  b LEFT JOIN FETCH b.author")
     public List<Book> getAllBookWithAuthor();
 
-    @Query("SELECT DISTINCT b FROM Book b LEFT JOIN FETCH b.customers")
+    @Query("SELECT DISTINCT b FROM Book b LEFT JOIN FETCH b.customer")
     public List<Book> getAllBookWithJoin();
 }

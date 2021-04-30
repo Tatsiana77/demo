@@ -1,9 +1,8 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,9 +22,9 @@ public class Book  {
     private Author author;
 
 
-    @ManyToMany(mappedBy = "book")
-    private Set<Customer> customers = new HashSet<>();
-
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="customer_id", nullable = false)
+    private Customer customer;
 
 
     public Integer getId() {
@@ -52,26 +51,12 @@ public class Book  {
         this.author = author;
     }
 
-    public Set<Customer> getCustomers() {
-        return customers;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Book)) return false;
-        Book book = (Book) o;
-        return Objects.equals(getId(), book.getId()) && Objects.equals(getTitle(), book.getTitle())
-                && Objects.equals(getCustomers(), book.getCustomers());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getTitle(), getCustomers());
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override
@@ -80,7 +65,7 @@ public class Book  {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author=" + author +
-                ", customers=" + customers +
+                ", customer=" + customer +
                 '}';
     }
 }

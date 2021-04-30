@@ -5,6 +5,7 @@ import com.example.demo.dto.AuthorDto;
 import java.util.List;
 
 public interface AuthorService {
+
     public List<AuthorDto> getAllAuthor();
 
     public List<AuthorDto> getAllAuthorWithBooks();
@@ -16,6 +17,8 @@ public interface AuthorService {
     public AuthorDto getAuthorByName(String name);
 
     public AuthorDto getAuthorWithBookById(Integer idAuthor);
+
+    public void updateAuthor(Integer id, String name, String surname);
 
     public void deleteById(Integer id);
 }

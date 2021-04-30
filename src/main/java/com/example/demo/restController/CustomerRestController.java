@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -17,8 +18,17 @@ public class CustomerRestController {
     @Autowired
     public CustomerRestController(CustomerService customerService) { this.customerService = customerService; }
 
-    @GetMapping("/customer")
-    public Set<CustomerDto>  getAllCustomer() {
+    @GetMapping("/api/customer")
+    public List<CustomerDto> getAllCustomer() {
         return customerService.getAllCustomer();
     }
+
+
+    @GetMapping("/api/customerWithBook")
+    public List<CustomerDto> getCustomerWithBook(){
+        return  customerService.getCustomerWithBook();
+    }
+
+
+
 }

@@ -1,10 +1,7 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -30,11 +27,10 @@ public class Customer {
     private String customer_email;
 
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "customer_book",
-            joinColumns = @JoinColumn(name = "customer_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-           private Set<Book> book  = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Book> books = new ArrayList<>();
+
+
 
     public Integer getId() {
         return id;
@@ -84,29 +80,14 @@ public class Customer {
         this.customer_email = customer_email;
     }
 
-    public Set<Book> getBook() {
-        return book;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setBook(Set<Book> book) {
-        this.book = book;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(getId(), customer.getId()) && Objects.equals(getName(), customer.getName())
-                && Objects.equals(getSurname(), customer.getSurname()) && Objects.equals(getCustomer_address(), customer.getCustomer_address())
-                && Objects.equals(getCustomer_phone(), customer.getCustomer_phone()) && Objects.equals(getCustomer_email(), customer.getCustomer_email())
-                && Objects.equals(getBook(), customer.getBook());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getSurname(), getCustomer_address(), getCustomer_phone(), getCustomer_email(), getBook());
-    }
 
     @Override
     public String toString() {
@@ -117,7 +98,7 @@ public class Customer {
                 ", customer_address='" + customer_address + '\'' +
                 ", customer_phone='" + customer_phone + '\'' +
                 ", customer_email='" + customer_email + '\'' +
-                ", book=" + book +
+                ", books=" + books +
                 '}';
     }
 }

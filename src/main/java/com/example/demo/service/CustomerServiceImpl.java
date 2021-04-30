@@ -10,8 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -31,14 +32,14 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public Set<CustomerDto> getCustomerWithBook() {
-        Set<Customer> customer = customerRepository.getCustomerWithBook();
+    public List<CustomerDto> getCustomerWithBook() {
+        List<Customer> customer = customerRepository.getCustomerWithBook();
         return convertFromListEntityToListDto(customer);
     }
 
     @Override
-    public Set<CustomerDto> getAllCustomer() {
-        Set<Customer> customer = customerRepository.getAllCustomer();
+    public List<CustomerDto> getAllCustomer() {
+        List<Customer> customer = customerRepository.getAllCustomer();
         return convertListCustomerToListDto(customer);
     }
 
@@ -54,8 +55,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
-    private Set<CustomerDto> convertFromListEntityToListDto(Set<Customer> customer) {
-        Set<CustomerDto> customerDtos = new HashSet<>();
+    private List<CustomerDto> convertFromListEntityToListDto(List<Customer> customer) {
+        List<CustomerDto> customerDtos = new ArrayList<>();
         for (Customer customers : customer) {
             customerDtos.add(convertFromEntityToDto(customers));
         }
@@ -72,19 +73,19 @@ public class CustomerServiceImpl implements CustomerService {
         customerDto.setCustomer_email(customer.getCustomer_email());
         customerDto.setCustomer_phone(customer.getCustomer_phone());
 
-        Set<BookDto> bookDtos = new HashSet<>();
-        for (Book book : customer.getBook()) {
+        List<BookDto> bookDtos = new ArrayList<>();
+        for (Book book : customer.getBooks()) {
             BookDto bookDto = new BookDto();
             bookDto.setId(book.getId());
             bookDto.setTitle(book.getTitle());
             bookDtos.add(bookDto);
         }
-        customerDto.setBookDto(bookDtos);
+        customerDto.setBooksDto(bookDtos);
         return customerDto;
     }
 
-    private Set<CustomerDto> convertListCustomerToListDto(Set<Customer> customer) {
-        Set<CustomerDto> customerDtos = new HashSet<>();
+    private List<CustomerDto> convertListCustomerToListDto(List<Customer> customer) {
+        List<CustomerDto> customerDtos = new ArrayList<>();
         for (Customer customers : customer) {
             customerDtos.add(convertFromEntityAuthorToDto(customers));
         }
@@ -100,7 +101,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerDto.setCustomer_address(customer.getCustomer_address());
         customerDto.setCustomer_phone(customer.getCustomer_phone());
         customerDto.setCustomer_email(customer.getCustomer_email());
-        customerDto.setBookDto(new HashSet<>());
+        customerDto.setBooksDto(new ArrayList<>());
         return customerDto;
     }
 
@@ -114,11 +115,11 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setCustomer_email(customerDto.getCustomer_email());
         customer.setCustomer_address(customerDto.getCustomer_address());
         customer.setCustomer_phone(customerDto.getCustomer_phone());
-        Set<Book> book = new HashSet<>();
-        for (BookDto bookdto : customerDto.getBookDto()) {
+        List<Book> book = new ArrayList<>();
+        for (BookDto bookdto : customerDto.getBooksDto()) {
             book.add(convertFromBookDtoToBookEntity(bookdto));
         }
-        customer.setBook(book);
+        customer.setBooks(book);
         return customer;
     }
 

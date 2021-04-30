@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+
 import com.example.demo.entity.Book;
 
 import java.util.List;
@@ -15,20 +16,20 @@ public class CustomerDto {
     private String customer_address;
     private String customer_phone;
     private String customer_email;
-    private Set<BookDto> bookDto;
+    private List<BookDto> booksDto;
 
     public CustomerDto() {
     }
 
     public CustomerDto(Integer id, String name, String surname, String customer_address,
-                       String customer_phone, String customer_email, Set<BookDto> bookDto) {
+                       String customer_phone, String customer_email, List<BookDto> booksDto) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.customer_address = customer_address;
         this.customer_phone = customer_phone;
         this.customer_email = customer_email;
-        this.bookDto = bookDto;
+        this.booksDto = booksDto;
     }
 
     public Integer getId() {
@@ -79,29 +80,14 @@ public class CustomerDto {
         this.customer_email = customer_email;
     }
 
-    public Set<BookDto> getBookDto() {
-        return bookDto;
+    public List<BookDto> getBooksDto() {
+        return booksDto;
     }
 
-    public void setBookDto(Set<BookDto> bookDto) {
-        this.bookDto = bookDto;
+    public void setBooksDto(List<BookDto> booksDto) {
+        this.booksDto = booksDto;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CustomerDto)) return false;
-        CustomerDto that = (CustomerDto) o;
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getName(), that.getName()) &&
-                Objects.equals(getSurname(), that.getSurname()) && Objects.equals(getCustomer_address(), that.getCustomer_address())
-                && Objects.equals(getCustomer_phone(), that.getCustomer_phone()) && Objects.equals(getCustomer_email(), that.getCustomer_email())
-                && Objects.equals(getBookDto(), that.getBookDto());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getSurname(), getCustomer_address(), getCustomer_phone(), getCustomer_email(), getBookDto());
-    }
 
     @Override
     public String toString() {
@@ -112,7 +98,7 @@ public class CustomerDto {
                 ", customer_address='" + customer_address + '\'' +
                 ", customer_phone='" + customer_phone + '\'' +
                 ", customer_email='" + customer_email + '\'' +
-                ", bookDto=" + bookDto +
+                ", booksDto=" + booksDto +
                 '}';
     }
 }

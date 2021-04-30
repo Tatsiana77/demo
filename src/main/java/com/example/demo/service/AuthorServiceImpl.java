@@ -60,6 +60,11 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    public void updateAuthor(Integer id, String name, String surname) {
+
+    }
+
+    @Override
     public void deleteById(Integer id) {
         authorRepository.deleteById(id);
     }

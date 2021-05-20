@@ -6,6 +6,7 @@ public class BookDto {
     private Integer id;
     private String title;
 
+
     public BookDto() {
     }
 

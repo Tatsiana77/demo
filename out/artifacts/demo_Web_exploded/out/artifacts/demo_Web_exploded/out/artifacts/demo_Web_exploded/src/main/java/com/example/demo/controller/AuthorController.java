@@ -23,31 +23,44 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @RequestMapping(value="/author", method = RequestMethod.GET)
+    @RequestMapping(value = "/author", method = RequestMethod.GET)
     public String getAllAuthor(ModelMap modelMap) {
-        List<AuthorDto> authors= authorService.getAllAuthor();
+        List<AuthorDto> authors = authorService.getAllAuthorWithBooks();
         modelMap.addAttribute("authors", authors);
-        return "author";
+        return "authors";
     }
 
+    @RequestMapping(value = "/author/book", method = RequestMethod.GET)
+    public String getAllAuthorWithBook(ModelMap modelMap, @RequestParam Integer id) {
+        AuthorDto authorDto = authorService.getAuthorWithBookById(id);
+        modelMap.addAttribute("author", authorDto);
+        return "author_book";
+    }
 
-    @RequestMapping("/author/edit")
+    @RequestMapping(value = "/new_author")
+    public String newAuthorForm(ModelMap modelMap) {
+        AuthorDto author = new AuthorDto();
+        modelMap.addAttribute("author", author);
+        return "new_author";
+    }
+
+    @RequestMapping(value = "/save_Author", method = RequestMethod.POST)
+    public String saveAuthor(@ModelAttribute("author") AuthorDto authorDto) {
+        authorService.saveEntity(authorDto);
+        return "redirect:/author";
+    }
+
+    @RequestMapping(value = "/author/edit", method = RequestMethod.POST)
     public String editAuthor(ModelMap modelMap, @RequestParam Integer id) {
         AuthorDto authorDto = authorService.getAuthorById(id);
         modelMap.addAttribute("author", authorDto);
         return "editAuthor";
     }
 
-    @RequestMapping(value="/edit-author", method =RequestMethod.POST)
-    public String saveAuthor(@ModelAttribute("author") AuthorDto authorDto) {
-        authorService.saveEntity(authorDto);
-        return "redirect:/author";
-    }
-
     @RequestMapping("/author/{id}")
-    public String deleteAuthor(ModelMap modelMap, @RequestParam Integer id){
-       authorService.deleteById(id);
-        return  "delAuthor";
+    public String deleteAuthor(ModelMap modelMap, @RequestParam Integer id) {
+        authorService.deleteById(id);
+        return "delAuthor";
     }
 
 }

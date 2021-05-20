@@ -18,7 +18,7 @@ public class CustomerRestController {
     @Autowired
     public CustomerRestController(CustomerService customerService) { this.customerService = customerService; }
 
-    @GetMapping("/api/customer")
+    @GetMapping("/api/customers")
     public List<CustomerDto> getAllCustomer() {
         return customerService.getAllCustomer();
     }

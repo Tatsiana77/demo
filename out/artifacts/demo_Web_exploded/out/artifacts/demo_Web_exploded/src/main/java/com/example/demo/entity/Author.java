@@ -17,7 +17,7 @@ public class Author {
     private String surname;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Book> book = new ArrayList<>();
+    private List<Book> book ;
 
     public Integer getId() {
         return id;
@@ -51,13 +51,13 @@ public class Author {
         this.book = book;
     }
 
-    @Override
-    public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", book=" + book +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Author{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", surname='" + surname + '\'' +
+//                ", book=" + book +
+//                '}';
+//    }
 }

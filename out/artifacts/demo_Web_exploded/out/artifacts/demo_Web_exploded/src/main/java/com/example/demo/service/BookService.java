@@ -11,8 +11,12 @@ public interface BookService {
 
     public List<BookDto> getAllBookWithJoin();
 
+    public BookDto  getBookById(Integer idBook);
+
     public void saveBook(BookDto bookDto);
 
     public void deleteBookById(Integer id);
+
+
 
 }

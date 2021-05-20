@@ -6,6 +6,7 @@ import com.example.demo.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -29,9 +30,9 @@ public class AuthorRestController {
     }
 
 
-    @GetMapping("/api/author/{idAuthor}")
-    public AuthorDto getAuthorById(@PathVariable("idAuthor") Integer id) {
-        return authorService.getAuthorById(id);
+    @GetMapping(value = "/api/{idAuthor}")
+    public AuthorDto getAuthorById(@PathVariable("idAuthor") Integer idAuthor) {
+        return authorService.getAuthorWithBookById(idAuthor);
     }
 
     @GetMapping("/api/author/name")
@@ -41,7 +42,7 @@ public class AuthorRestController {
 
 
 
-    @PostMapping("/api/author")
+    @PostMapping ("/api/author")
     public void saveAuthor(@RequestBody AuthorDto authorDto) {
         authorService.saveEntity(authorDto);
     }

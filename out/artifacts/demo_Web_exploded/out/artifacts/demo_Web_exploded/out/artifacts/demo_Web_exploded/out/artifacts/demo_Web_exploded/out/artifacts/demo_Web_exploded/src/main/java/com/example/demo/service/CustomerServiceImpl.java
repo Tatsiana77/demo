@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto getCustomerWithById(Integer idCustomer) {
         Customer customer = customerRepository.findById(idCustomer).get();
-        return convertFromEntityAuthorToDto(customer);
+        return convertFromEntityToDto(customer);
     }
 
     @Override
@@ -87,13 +87,13 @@ public class CustomerServiceImpl implements CustomerService {
     private List<CustomerDto> convertListCustomerToListDto(List<Customer> customer) {
         List<CustomerDto> customerDtos = new ArrayList<>();
         for (Customer customers : customer) {
-            customerDtos.add(convertFromEntityAuthorToDto(customers));
+            customerDtos.add(convertFromEntityCustomerToDto(customers));
         }
 
         return customerDtos;
     }
 
-    private CustomerDto convertFromEntityAuthorToDto(Customer customer) {
+    private CustomerDto convertFromEntityCustomerToDto(Customer customer) {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setId(customer.getId());
         customerDto.setName(customer.getName());

@@ -2,9 +2,7 @@ package com.example.demo.entity;
 
 import javax.persistence.*;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -26,6 +24,15 @@ public class Book  {
     @JoinColumn(name="customer_id", nullable = false)
     private Customer customer;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="publisher_id", nullable = false)
+    private Publisher publisher;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Incoming> incoming;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Orders> orders;
 
     public Integer getId() {
         return id;
@@ -59,13 +66,13 @@ public class Book  {
         this.customer = customer;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", author=" + author +
-                ", customer=" + customer +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Book{" +
+//                "id=" + id +
+//                ", title='" + title + '\'' +
+//                ", author=" + author +
+//                ", customer=" + customer +
+//                '}';
+//    }
 }

@@ -28,7 +28,10 @@ public class Customer {
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Book> books = new ArrayList<>();
+    private List<Book> books ;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Orders> orders;
 
 
 
@@ -88,17 +91,17 @@ public class Customer {
         this.books = books;
     }
 
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", customer_address='" + customer_address + '\'' +
-                ", customer_phone='" + customer_phone + '\'' +
-                ", customer_email='" + customer_email + '\'' +
-                ", books=" + books +
-                '}';
-    }
+//
+//    @Override
+//    public String toString() {
+//        return "Customer{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", surname='" + surname + '\'' +
+//                ", customer_address='" + customer_address + '\'' +
+//                ", customer_phone='" + customer_phone + '\'' +
+//                ", customer_email='" + customer_email + '\'' +
+//                ", books=" + books +
+//                '}';
+//    }
 }

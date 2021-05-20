@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.BookDto;
+import com.example.demo.dto.CustomerDto;
 import com.example.demo.entity.Book;
+import com.example.demo.entity.Customer;
 import com.example.demo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,13 +25,20 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDto> getAllBook() {
         List<Book> books = bookRepository.getAllBook();
-        return convertListToListAuthorDto(books);
+        return convertListToListBookDto(books);
     }
+
 
     @Override
     public List<BookDto> getAllBookWithJoin() {
         List<Book> books = bookRepository.getAllBookWithJoin();
-        return convertListToListAuthorDto(books);
+        return convertListToListBookDto(books);
+    }
+
+    @Override
+    public BookDto getBookById(Integer idBook) {
+        Book book = bookRepository.findById(idBook).get();
+        return  convertFromEntityToDto(book);
     }
 
     @Override
@@ -44,11 +53,13 @@ public class BookServiceImpl implements BookService {
         bookRepository.deleteById(id);
     }
 
-    private List<BookDto> convertListToListAuthorDto(List<Book> book) {
+
+    private List<BookDto> convertListToListBookDto(List<Book> book) {
         List<BookDto> bookDtos = new ArrayList<>();
         for (Book books : book) {
             bookDtos.add(convertFromEntityToDto(books));
         }
+
 
         return bookDtos;
     }
@@ -57,7 +68,10 @@ public class BookServiceImpl implements BookService {
         BookDto bookDto = new BookDto();
         bookDto.setId(book.getId());
         bookDto.setTitle(book.getTitle());
+
         return bookDto;
+
+
     }
 
     private Book convertFromDtoToEntity(BookDto bookDto) {
@@ -67,7 +81,7 @@ public class BookServiceImpl implements BookService {
         }
         book.setTitle(bookDto.getTitle());
         return book;
-         }
+    }
 
 }
 

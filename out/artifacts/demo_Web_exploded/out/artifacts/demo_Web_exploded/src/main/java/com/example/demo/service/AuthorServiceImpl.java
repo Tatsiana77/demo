@@ -58,7 +58,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public AuthorDto getAuthorWithBookById(Integer idAuthor) {
-        return convertFromEntityToDto(authorRepository.getAuthorWithBookById(idAuthor));
+        return  convertFromEntityToDto(authorRepository.getAuthorWithBookById(idAuthor));
     }
 
 

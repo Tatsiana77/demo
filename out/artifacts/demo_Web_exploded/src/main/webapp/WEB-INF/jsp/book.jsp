@@ -6,18 +6,19 @@
 </head>
 <body>
 <div align="center">
-    <table border="1" cellpadding="5">
+    <table border="1" cellpadding="20">
         <caption><h2>List of  Books</h2></caption>
         <tr>
             <th>ID</th>
             <th>Title</th>
             <th>Action</th>
         </tr>
-        <table>
             <c:forEach var="book" items="${books}">
                 <tr>
                     <td><c:out value="${book.id}" /></td>
                     <td><c:out value="${book.title}" /></td>
+                    <td><button><a href="/book/incoming?id=${book.id}"></a> Incoming</button></td>
+
                 </tr>
             </c:forEach></table>
 

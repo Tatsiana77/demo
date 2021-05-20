@@ -72,7 +72,6 @@ public class Publisher {
                 ", name='" + name + '\'' +
                 ", publisher_Address='" + publisher_Address + '\'' +
                 ", yearOfPub=" + yearOfPub +
-                ", book=" + book +
                 '}';
     }
 }

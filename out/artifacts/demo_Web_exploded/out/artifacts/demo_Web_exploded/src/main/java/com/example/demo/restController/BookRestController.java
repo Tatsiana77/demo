@@ -25,5 +25,9 @@ public class BookRestController {
     public List<BookDto> getAllBookWithJoin(){
         return bookService.getAllBookWithJoin();
     }
+    @GetMapping("/api/bookWithIncoming")
+    public List<BookDto> getAllBookWithIncoming(){
+        return bookService.getBookWithIncoming();
+    }
 
 }

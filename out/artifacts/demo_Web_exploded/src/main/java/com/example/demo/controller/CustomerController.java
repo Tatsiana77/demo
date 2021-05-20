@@ -51,4 +51,11 @@ public class CustomerController {
         return "customer_book";
     }
 
+    @RequestMapping(value = "/customer/orders", method = RequestMethod.GET)
+    public String getAllCustomerWithOrders(ModelMap modelMap, @RequestParam Integer id) {
+        CustomerDto customerDto = customerService.getCustomerWithOrdersById(id);
+        modelMap.addAttribute("customer", customerDto);
+        return "customer_order";
+    }
+
 }

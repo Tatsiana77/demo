@@ -19,6 +19,7 @@
             <th>count_Incom</th>
             <th>Price</th>
             <th>Action</th>
+
         </tr>
 
         <c:forEach var="incoming" items="${incoming}">
@@ -26,7 +27,7 @@
                 <td><c:out value="${incoming.id}" /></td>
                 <td><c:out value="${incoming.count_Incom}" /></td>
                 <td><c:out value="${incoming.price}" /></td>
-                <td><button><a href="/incoming/book?id=${author.id}"> Book</a></button></td>
+
             </tr>
         </c:forEach>
 

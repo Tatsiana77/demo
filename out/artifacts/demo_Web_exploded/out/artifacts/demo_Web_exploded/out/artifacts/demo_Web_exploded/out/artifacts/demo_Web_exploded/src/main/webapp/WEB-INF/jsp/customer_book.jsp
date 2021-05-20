@@ -7,26 +7,20 @@
 <body>
 <div align="center">
     <table border="1" cellpadding="20">
-        <caption><h2> Incoming</h2></caption>
+        <caption><h2> Book</h2></caption>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Email</th>
+            <th>Title</th>
+            <th>Publisher</th>
+
 
 
         </tr>
-        <c:forEach var="customer" items="${customer.getBooksDto}">
+        <c:forEach var="book" items="${customer.getBooksDto()}">
             <tr>
-                <td><c:out value="${customer.id}" /></td>
-                <td><c:out value="${customer.name}" /></td>
-                <td><c:out value="${customer.customer_address}" /></td>
-                <td><c:out value="${customer.customer_phone}" /></td>
-                <td><c:out value="${customer.customer_emai}" /></td>
-                <td><button>Save</button></td>
-
+                <td><c:out value="${book.id}" /></td>
+                <td><c:out value="${book.title}" /></td>
+                <td><button><a href="/book/publisher?id=${book.id}"></a> Publisher</button></td>
 
             </tr>
         </c:forEach></table>

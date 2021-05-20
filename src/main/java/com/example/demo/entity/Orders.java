@@ -14,6 +14,7 @@ public class Orders {
     private Integer countOrders;
 
     @Column(name="dateOfOrder")
+    @Temporal(TemporalType.DATE)
     private Date dateOfOrder;
 
 

@@ -3,8 +3,10 @@ package com.example.demo.service;
 
 import com.example.demo.dto.BookDto;
 import com.example.demo.dto.CustomerDto;
+import com.example.demo.dto.OrdersDto;
 import com.example.demo.entity.Book;
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Orders;
 import com.example.demo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +53,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteById(Integer id) {
         customerRepository.deleteById(id);
+    }
+
+    @Override
+    public CustomerDto getCustomerWithOrdersById(Integer idCustomer) {
+        return convertFromEntityWithOrdersToDto(customerRepository.getCustomerWithOrdersById(idCustomer));
     }
 
 
@@ -131,5 +138,25 @@ public class CustomerServiceImpl implements CustomerService {
         return book;
     }
 
+    private CustomerDto convertFromEntityWithOrdersToDto(Customer customer) {
+        CustomerDto customerDto = new CustomerDto();
+        customerDto.setId(customer.getId());
+        customerDto.setName(customer.getName());
+        customerDto.setSurname(customer.getSurname());
+        customerDto.setCustomer_address(customer.getCustomer_address());
+        customerDto.setCustomer_email(customer.getCustomer_email());
+        customerDto.setCustomer_phone(customer.getCustomer_phone());
+
+      List<OrdersDto> ordersDtos = new ArrayList<>();
+        for (Orders orders: customer.getOrders()) {
+           OrdersDto ordersDto = new OrdersDto();
+          ordersDto.setId(orders.getId());
+          ordersDto.setCountOrders(orders.getCountOrders());
+          ordersDto.setDateOfOrder(orders.getDateOfOrder());
+            ordersDtos.add(ordersDto);
+        }
+        customerDto.setOrderDto(ordersDtos);
+        return customerDto;
+    }
 
 }

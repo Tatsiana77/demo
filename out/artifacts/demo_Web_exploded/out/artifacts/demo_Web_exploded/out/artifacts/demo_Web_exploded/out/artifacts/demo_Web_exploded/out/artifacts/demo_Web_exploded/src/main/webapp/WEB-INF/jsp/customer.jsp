@@ -23,7 +23,8 @@
             <th>Customer_address</th>
             <th>Customer_phone</th>
             <th>Customer_email</th>
-            <th>Action</th>
+            <th>Books</th>
+            <th>Orders</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -36,7 +37,8 @@
                     <td><c:out value="${customer.customer_address}" /></td>
                     <td><c:out value="${customer.customer_phone}" /></td>
                     <td><c:out value="${customer.customer_email}" /></td>
-                    <td><button><a href="/book?id=${customer.id}"> Book</a></button></td>
+                    <td><button><a href="/customer/book?id=${customer.id}"> Book</a></button></td>
+                    <td><button><a href="/customer/orders?id=${customer.id}"> Orders</a></button></td>
                     <td><button>   <a href="/edit?id=${customer.id}">Edit</a></button></td>
                     <td><button><a href="/delete?id=${customer.id}">Delete</a></button></td>
 

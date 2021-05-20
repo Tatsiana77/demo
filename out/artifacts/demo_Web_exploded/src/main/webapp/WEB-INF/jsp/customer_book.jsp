@@ -11,7 +11,7 @@
         <tr>
             <th>ID</th>
             <th>Title</th>
-            <th>Action</th>
+            <th>Publisher</th>
 
 
 
@@ -20,8 +20,7 @@
             <tr>
                 <td><c:out value="${book.id}" /></td>
                 <td><c:out value="${book.title}" /></td>
-                <td><button>Save</button></td>
-
+                <td><button><a href="/book/publisher?id=${book.id}"></a> Publisher</button></td>
 
             </tr>
         </c:forEach></table>

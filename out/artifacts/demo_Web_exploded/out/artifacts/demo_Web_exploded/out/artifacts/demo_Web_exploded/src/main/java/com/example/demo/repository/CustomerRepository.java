@@ -15,13 +15,17 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query("SELECT  DISTINCT c FROM Customer c")
     public List<Customer> getAllCustomer();
 
-    @Modifying
+
     @Query("SELECT  c FROM Customer c   JOIN FETCH c.books  WHERE  c.id = :id ")
     public Customer getCustomerWithBookById(@Param("id") Integer id);
 
 
     @Query("SELECT  distinct  c FROM Customer c  Left   JOIN FETCH c.books ")
     public List<Customer> getCustomerWithBook();
+
+
+    @Query("SELECT c FROM Customer c LEFT JOIN FETCH c.orders WHERE c.id = :id")
+    public Customer getCustomerWithOrdersById(@Param("id") Integer id);
 
 
 }

@@ -29,6 +29,9 @@ public class CustomerRestController {
         return  customerService.getCustomerWithBook();
     }
 
-
+    @GetMapping("/api/customerWithOrders")
+    public  List<CustomerDto> getCustomerWithOrders(){
+        return customerService.getCustomerWithOrders();
+    }
 
 }

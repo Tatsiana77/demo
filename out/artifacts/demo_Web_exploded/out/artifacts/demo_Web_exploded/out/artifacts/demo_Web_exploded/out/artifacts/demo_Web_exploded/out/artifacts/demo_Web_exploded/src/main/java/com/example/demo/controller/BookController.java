@@ -6,10 +6,7 @@ import com.example.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,11 +26,24 @@ public class BookController {
         return "book";
     }
 
-    @RequestMapping(value = "book/incoming", method = RequestMethod.GET)
-    public String getAllBookWithCustomer(ModelMap modelMap, @RequestParam Integer id) {
-        BookDto bookDto = bookService.getBookById(id);
+//    @RequestMapping(value = "book/customer", method = RequestMethod.GET)
+//    public String getAllBookWithCustomer(ModelMap modelMap, @RequestParam Integer id) {
+//        BookDto bookDto = bookService.getBookById(id);
+//        modelMap.addAttribute("book", bookDto);
+//        return "book_customer";
+//    }
+    @RequestMapping(value = "book/order", method = RequestMethod.GET)
+    public String getAllBookWithPublisher(ModelMap modelMap, @RequestParam Integer id) {
+        BookDto bookDto = bookService.getBookWithOrdersById(id);
         modelMap.addAttribute("book", bookDto);
-        return "book_incoming";
+        return "book_orders";
+    }
+
+    @RequestMapping(value = "book/incomings", method = RequestMethod.GET)
+    public String getAllBookWithIncoming(ModelMap modelMap, @RequestParam Integer id){
+        BookDto bookDto = bookService.getBookWithIncomingById(id);
+        modelMap.addAttribute("book", bookDto);
+        return  "book_incoming";
     }
 
     @RequestMapping(value = "/newBook ", method = RequestMethod.POST)

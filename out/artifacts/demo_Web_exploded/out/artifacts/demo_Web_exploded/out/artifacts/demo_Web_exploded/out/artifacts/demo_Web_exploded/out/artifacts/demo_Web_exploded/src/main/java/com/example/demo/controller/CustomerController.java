@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.AuthorDto;
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.entity.Customer;
 import com.example.demo.service.CustomerService;
@@ -45,13 +44,18 @@ public class CustomerController {
         return "redirect:/ customer";
     }
 
-
-
     @RequestMapping(value = "/customer/book", method = RequestMethod.GET)
     public String getAllCustomer(ModelMap modelMap, @RequestParam Integer id) {
         CustomerDto customerDto = customerService.getCustomerWithById(id);
         modelMap.addAttribute("customer", customerDto);
-        return "redirect:/book";
+        return "customer_book";
+    }
+
+    @RequestMapping(value = "/customer/orders", method = RequestMethod.GET)
+    public String getAllCustomerWithOrders(ModelMap modelMap, @RequestParam Integer id) {
+        CustomerDto customerDto = customerService.getCustomerWithOrdersById(id);
+        modelMap.addAttribute("customer", customerDto);
+        return "customer_order";
     }
 
 }

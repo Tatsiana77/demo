@@ -24,4 +24,11 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     public List<Customer> getCustomerWithBook();
 
 
+    @Query("SELECT c FROM Customer c LEFT JOIN FETCH c.orders WHERE c.id = :id")
+    public Customer getCustomerWithOrdersById(@Param("id") Integer id);
+
+    @Query("SELECT c FROM Customer  c LEFT JOIN FETCH c.orders")
+    public List<Customer> getCustomerWithOrders();
+
+
 }

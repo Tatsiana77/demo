@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dto.AuthorDto;
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.entity.Customer;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Set;
@@ -19,5 +20,7 @@ public interface CustomerService {
     public void saveEntity(CustomerDto customerDto);
 
     public void deleteById(Integer id);
+
+    public CustomerDto getCustomerWithOrdersById( Integer idCustomer);
 
 }

@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 
 import com.example.demo.entity.Book;
+import com.example.demo.entity.Orders;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,12 +18,14 @@ public class CustomerDto {
     private String customer_phone;
     private String customer_email;
     private List<BookDto> booksDto;
+    private List<OrdersDto> orderDto;
 
     public CustomerDto() {
     }
 
     public CustomerDto(Integer id, String name, String surname, String customer_address,
-                       String customer_phone, String customer_email, List<BookDto> booksDto) {
+                       String customer_phone, String customer_email,
+                       List<BookDto> booksDto, List<OrdersDto> orderDto) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -30,6 +33,7 @@ public class CustomerDto {
         this.customer_phone = customer_phone;
         this.customer_email = customer_email;
         this.booksDto = booksDto;
+        this.orderDto = orderDto;
     }
 
     public Integer getId() {
@@ -88,6 +92,13 @@ public class CustomerDto {
         this.booksDto = booksDto;
     }
 
+    public List<OrdersDto> getOrderDto() {
+        return orderDto;
+    }
+
+    public void setOrderDto(List<OrdersDto> orderDto) {
+        this.orderDto = orderDto;
+    }
 
     @Override
     public String toString() {

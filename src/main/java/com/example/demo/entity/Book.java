@@ -66,13 +66,30 @@ public class Book  {
         this.customer = customer;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Book{" +
-//                "id=" + id +
-//                ", title='" + title + '\'' +
-//                ", author=" + author +
-//                ", customer=" + customer +
-//                '}';
-//    }
+
+    public List<Incoming> getIncoming() {
+        return incoming;
+    }
+
+    public void setIncoming(List<Incoming> incoming) {
+        this.incoming = incoming;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author=" + author +
+                ", customer=" + customer +
+                '}';
+    }
 }
